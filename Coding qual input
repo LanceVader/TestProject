@@ -9,15 +9,24 @@ def lookup_strings(file_path):
             for i, line in enumerate(content):
                 number, string = line.split()
                 data_dict[number] = string
+def insert_sorted(num, pyramid):
+    index = 1
+    while index <= len(pyramid) and num <pyramid[index]:
+        index += 1
+    pyramid[index] = num
 
-        pyramid = {}
-        index = 1
-        for number, string in data_dict.items():
-            pyramid[index] = number
-            index += 1
+for num in sorted(numbers):
+    insert_sorted(num, pyramid)
 
-        last_number = pyramid[len(pyramid)]
-        return data_dict[last_number]
-    except FileNotFoundError:
-        print("File not found.")
+pyramid = {}
+index = 1
+for number, string in data_dict.items():
+    pyramid[index] = number
+    index += 1
+
+last_number = pyramid[len(pyramid)]
+return data_dict[last_number]
+
+except FileNotFoundError:
+    print("File not found.")
         return None
