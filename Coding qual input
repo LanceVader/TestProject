@@ -1,0 +1,23 @@
+string = lookup_strings("coding_qual_input.txt")
+print(string)
+
+def lookup_strings(file_path):
+    try:
+        data_dict = {}
+        with open(file_path, 'r') as file:
+            content = file.readlines()
+            for i, line in enumerate(content):
+                number, string = line.split()
+                data_dict[number] = string
+
+        pyramid = {}
+        index = 1
+        for number, string in data_dict.items():
+            pyramid[index] = number
+            index += 1
+
+        last_number = pyramid[len(pyramid)]
+        return data_dict[last_number]
+    except FileNotFoundError:
+        print("File not found.")
+        return None
